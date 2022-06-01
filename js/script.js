@@ -70,6 +70,15 @@ function doPansexual () {
   }
 }
 
+function doGay () {
+  if (checkImageLoad()) {
+    drawGay()
+    outImage.drawTo(canvas)
+  } else {
+    alert('Image Not Loaded')
+  }
+}
+
 // Draw Rainbow
 function drawRainbow () {
   outImage = new SimpleImage(image)
@@ -165,6 +174,31 @@ function drawPansexual () {
   }
 }
 
+function drawGay () {
+  outImage = new SimpleImage(image)
+  const rectHeight = outImage.getHeight()
+  const rectSegment = parseInt(rectHeight) / 5
+  let Y
+  let X
+  for (pixel of outImage.values()) {
+    X = pixel.getX()
+    Y = pixel.getY()
+    //    outImage.setPixel(X, Y, pixel);
+    avgColor = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3
+    if (Y >= 4 * parseInt(rectSegment)) {
+      doIndigo()
+    } else if (Y >= 3 * parseInt(rectSegment)) {
+      doSkyThenBlue()
+    } else if (Y >= 2 * parseInt(rectSegment)) {
+      doWhite()
+    } else if (Y >= parseInt(rectSegment)) {
+      doLightinGreen()
+    } else {
+      doLightGreen()
+    }
+  }
+}
+
 function doViolet () {
   if (avgColor < 128) {
     red = Math.round(1.6 * avgColor)
@@ -224,6 +258,22 @@ function doSkyBlue () {
   pixel.setGreen(green)
   pixel.setBlue(blue)
 }
+
+function doSkyThenBlue () {
+  if (avgColor < 128) {
+    red = Math.round(0.9 * avgColor)
+    green = Math.round(1.3 * avgColor)
+    blue = Math.round(1.8 * avgColor)
+  } else {
+    red = Math.round(0.8 * avgColor)
+    green = Math.round(1.1 * avgColor)
+    blue = Math.round(1.8 * avgColor)
+  }
+  pixel.setRed(red)
+  pixel.setGreen(green)
+  pixel.setBlue(blue)
+}
+
 
 function doIndigo () {
   if (avgColor < 128) {
@@ -302,6 +352,36 @@ function doGreen () {
     red = Math.round(2 * avgColor - 255)
     green = 255
     blue = Math.round(2 * avgColor - 255)
+  }
+  pixel.setRed(red)
+  pixel.setGreen(green)
+  pixel.setBlue(blue)
+}
+
+function doLightGreen () {
+  if (avgColor < 128) {
+    red = Math.round(0.1 * avgColor)
+    green = Math.round(2.2 * avgColor)
+    blue =  Math.round(0.9 * avgColor)
+  } else {
+    red = Math.round(0.1 * avgColor)
+    green = Math.round(0.9 * avgColor)
+    blue = Math.round(0.8 * avgColor)
+  }
+  pixel.setRed(red)
+  pixel.setGreen(green)
+  pixel.setBlue(blue)
+}
+
+function doLightinGreen () {
+  if (avgColor < 128) {
+    red = Math.round(1.1 * avgColor)
+    green = Math.round(2.2 * avgColor)
+    blue =  Math.round(1.4 * avgColor)
+  } else {
+    red = Math.round(0.8 * avgColor)
+    green = Math.round(1.6 * avgColor)
+    blue = Math.round(1.4 * avgColor)
   }
   pixel.setRed(red)
   pixel.setGreen(green)
