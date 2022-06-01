@@ -1,5 +1,5 @@
 var imageIn;
-var image;
+var image = null;
 var canvas;
 var imageorgnl = null;
 var grayImage = null;
@@ -24,9 +24,11 @@ function doReset() {
 }
 
 function checkImageLoad() {
-  if (image === null || !image.complete()) {
+  if (image === null) {
+    console.log("Image not loaded");
     return false;
   } else {
+    console.log("Image loaded");
     return true;
   }
 }
@@ -58,6 +60,16 @@ function doBisexual() {
     alert("Image Not Loaded");
   }
 }
+
+function doPansexual(){
+  if(checkImageLoad()){
+    drawPansexual();
+    outImage.drawTo(canvas);
+  } else {
+    alert("Image Not Loaded");
+  }
+}
+
 //Draw Rainbow
 function drawRainbow() {
   outImage = new SimpleImage(image);
@@ -132,13 +144,34 @@ function drawBisexual() {
   }
 }
 
+function drawPansexual(){
+  outImage = new SimpleImage(image);
+  var rectHeight = outImage.getHeight();
+  var rectSegment = parseInt(rectHeight) / 3;
+  var Y;
+  var X;
+  for (pixel of outImage.values()) {
+    X = pixel.getX();
+    Y = pixel.getY();
+    //    outImage.setPixel(X, Y, pixel);
+    avgColor = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
+    if (Y >= 2 * parseInt(rectSegment)) {
+      doSkyBlue();
+    } else if (Y >= parseInt(rectSegment)) {
+      doYellow()
+    } else {
+      doPink()
+    }
+  }
+}
+
 function doViolet() {
   if (avgColor < 128) {
     red = Math.round(1.6 * avgColor);
     green = 0;
     blue = Math.round(1.6 * avgColor);
   } else {
-    red = Math.round(0.4 * ºavgColor + 153);
+    red = Math.round(0.4 * avgColor + 153);
     green = Math.round(2 * avgColor - 255);
     blue = Math.round(0.4 * avgColor + 153);
   }
@@ -169,6 +202,21 @@ function doPink() {
     blue = Math.round(2.5 * avgColor);
   } else {
     red = 255;
+    green = Math.round(2 * avgColor - 255);
+    blue = 255;
+  }
+  pixel.setRed(red);
+  pixel.setGreen(green);
+  pixel.setBlue(blue);
+}
+
+function doSkyBlue() {
+  if (avgColor < 128) {
+    red = Math.round(0.7 * avgColor);
+    green = Math.round(0.7 * avgColor);
+    blue = Math.round(1.6 * avgColor);
+  } else {
+    red = Math.round(2 * avgColor - 255);
     green = Math.round(2 * avgColor - 255);
     blue = 255;
   }
