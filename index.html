@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>LGBTQ+ Avatar Flag Generator</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+  <script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js">
+  </script>
+
+  <h1>LGBTQ+ Avatar Flag Generator</h1>
+
+  <canvas id="c1">
+  </canvas>
+
+  <p> </p>
+  <h2> Load Image </h2>
+  <input type="file" multiple="false" accept="image/*" id="img" onchange="loadImage()">
+  <p></p>
+  <input type="button" id="b1" value="LGBTQ+ Filter" onclick="doRainbow()">
+  <p></p>
+  <input type="button" id="b1" value="Asexual Filter" onclick="doAsexual()">
+  <p></p>
+  <input type="button" id="b1" value="Bisexual Filter" onclick="doBisexual()">
+  <p></p>
+  <input type="button" value="Reset Image" onclick="doReset()">
+  <p></p>
+  <script src="./script.js"></script>
+
+</body>
+
+</html>
