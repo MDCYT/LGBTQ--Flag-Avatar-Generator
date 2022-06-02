@@ -389,11 +389,18 @@ function doLightIndigo () {
 
 function doBlack () {
   // If the color of the pixel is white o black do nothing
-  if (avgColor != 0 && avgColor != 255) {
-    pixel.setRed(0)
-    pixel.setGreen(0)
-    pixel.setBlue(0)
+  if (avgColor < 128) {
+    red = Math.round(0.5 * avgColor)
+    green = Math.round(0.5 * avgColor)
+    blue = Math.round(0.5 * avgColor)
+  } else {
+    red = Math.round(0.2 * avgColor)
+    green = Math.round(0.2 * avgColor)
+    blue = Math.round(0.2 * avgColor)
   }
+  pixel.setRed(red)
+  pixel.setGreen(green)
+  pixel.setBlue(blue)
 }
 
 function doWhite () {
