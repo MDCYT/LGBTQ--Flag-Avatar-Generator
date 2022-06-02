@@ -97,6 +97,15 @@ function doTransexual () {
   }
 }
 
+function doAromantic () {
+  if (checkImageLoad()) {
+    drawAromantic()
+    outImage.drawTo(canvas)
+  } else {
+    alert('Image Not Loaded')
+  }
+}
+
 // Draw Rainbow
 function drawRainbow () {
   outImage = new SimpleImage(image)
@@ -263,6 +272,31 @@ function drawTransexual () {
       doLightPink()
     } else {
       doSkyThenBlue()
+    }
+  }
+}
+
+function drawAromantic () {
+  outImage = new SimpleImage(image)
+  const rectHeight = outImage.getHeight()
+  const rectSegment = parseInt(rectHeight) / 5
+  let Y = 0
+  let X = 0
+  for (pixel of outImage.values()) {
+    X = pixel.getX()
+    Y = pixel.getY()
+    //    outImage.setPixel(X, Y, pixel);
+    avgColor = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3
+    if (Y >= 4 * parseInt(rectSegment)) {
+      doBlack()
+    } else if (Y >= 3 * parseInt(rectSegment)) {
+      doGray()
+    } else if (Y >= 2 * parseInt(rectSegment)) {
+      doWhite()
+    } else if (Y >= parseInt(rectSegment)) {
+      doLightinGreen()
+    } else {
+      doLightGreen()
     }
   }
 }
