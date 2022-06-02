@@ -38,10 +38,10 @@ function doReset() {
 
 function checkImageLoad() {
   if (image === null) {
-    console.log("Image not loaded");
+    
     return false;
   } else {
-    console.log("Image loaded");
+    
     return true;
   }
 }
