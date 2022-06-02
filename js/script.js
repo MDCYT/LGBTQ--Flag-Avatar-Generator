@@ -38,10 +38,8 @@ function doReset() {
 
 function checkImageLoad() {
   if (image === null) {
-    
     return false;
   } else {
-    
     return true;
   }
 }
