@@ -10,6 +10,15 @@ let green
 let blue
 let avgColor
 
+//All items with b2 id make invisible but interactable
+function $(id) {
+  return document.getElementById(id)
+}
+
+$('b2').style.color = '#FF000000'
+$('b2').style.backgroundColor = '#FF000000'
+$('b2').style.borderColor = '#FF000000'
+
 function loadImage () {
   imageIn = document.getElementById('img')
   image = new SimpleImage(imageIn)
@@ -105,6 +114,15 @@ function doAromantic () {
     alert('Image Not Loaded')
   }
 }
+
+function doStraight () {
+  if (checkImageLoad()) {
+    drawStraight()
+    outImage.drawTo(canvas)
+  } else {
+    alert('Image Not Loaded')
+  }
+} 
 
 // Draw Rainbow
 function drawRainbow () {
@@ -297,6 +315,27 @@ function drawAromantic () {
       doLightinGreen()
     } else {
       doLightGreen()
+    }
+  }
+}
+
+function drawStraight () {
+  outImage = new SimpleImage(image)
+  const rectHeight = outImage.getHeight()
+  const rectSegment = parseInt(rectHeight) / 3
+  let Y = 0
+  let X = 0
+  for (pixel of outImage.values()) {
+    X = pixel.getX()
+    Y = pixel.getY()
+    //    outImage.setPixel(X, Y, pixel);
+    avgColor = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3
+    if (Y >= 2 * parseInt(rectSegment)) {
+      doLightPink()
+    } else if (Y >= parseInt(rectSegment)) {
+      doWhite()
+    } else {
+      doSkyThenBlue()
     }
   }
 }
