@@ -79,6 +79,24 @@ function doGay () {
   }
 }
 
+function doLesbian () {
+  if (checkImageLoad()) {
+    drawLesbian()
+    outImage.drawTo(canvas)
+  } else {
+    alert('Image Not Loaded')
+  }
+}
+
+function doTransexual () {
+  if (checkImageLoad()) {
+    drawTransexual()
+    outImage.drawTo(canvas)
+  } else {
+    alert('Image Not Loaded')
+  }
+}
+
 // Draw Rainbow
 function drawRainbow () {
   outImage = new SimpleImage(image)
@@ -199,6 +217,56 @@ function drawGay () {
   }
 }
 
+function drawLesbian () {
+  outImage = new SimpleImage(image)
+  const rectHeight = outImage.getHeight()
+  const rectSegment = parseInt(rectHeight) / 5
+  let Y = 0
+  let X = 0
+  for (pixel of outImage.values()) {
+    X = pixel.getX()
+    Y = pixel.getY()
+    //    outImage.setPixel(X, Y, pixel);
+    avgColor = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3
+    if (Y >= 4 * parseInt(rectSegment)) {
+      doLightIndigo()
+    } else if (Y >= 3 * parseInt(rectSegment)) {
+      doPink()
+    } else if (Y >= 2 * parseInt(rectSegment)) {
+      doWhite()
+    } else if (Y >= parseInt(rectSegment)) {
+      doOrange()
+    } else {
+      doDarkOrange()
+    }
+  }
+}
+
+function drawTransexual () {
+  outImage = new SimpleImage(image)
+  const rectHeight = outImage.getHeight()
+  const rectSegment = parseInt(rectHeight) / 5
+  let Y = 0
+  let X = 0
+  for (pixel of outImage.values()) {
+    X = pixel.getX()
+    Y = pixel.getY()
+    //    outImage.setPixel(X, Y, pixel);
+    avgColor = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3
+    if (Y >= 4 * parseInt(rectSegment)) {
+      doSkyThenBlue()
+    } else if (Y >= 3 * parseInt(rectSegment)) {
+      doLightPink()
+    } else if (Y >= 2 * parseInt(rectSegment)) {
+      doWhite()
+    } else if (Y >= parseInt(rectSegment)) {
+      doLightPink()
+    } else {
+      doSkyThenBlue()
+    }
+  }
+}
+
 function doViolet () {
   if (avgColor < 128) {
     red = Math.round(1.6 * avgColor)
@@ -244,6 +312,21 @@ function doPink () {
   pixel.setBlue(blue)
 }
 
+function doLightPink () {
+  if (avgColor < 128) {
+    red = Math.round(2 * avgColor)
+    green = Math.round(1.1 * avgColor)
+    blue = Math.round(0.8 * avgColor)
+  } else {
+    red = Math.round(1.5 * avgColor)
+    green = Math.round(0.9 * avgColor)
+    blue = Math.round(1 * avgColor)
+  }
+  pixel.setRed(red)
+  pixel.setGreen(green)
+  pixel.setBlue(blue)
+}
+
 function doSkyBlue () {
   if (avgColor < 128) {
     red = Math.round(0.7 * avgColor)
@@ -283,6 +366,21 @@ function doIndigo () {
   } else {
     red = Math.round(1.2 * avgColor - 51)
     green = Math.round(2 * avgColor - 255)
+    blue = 255
+  }
+  pixel.setRed(red)
+  pixel.setGreen(green)
+  pixel.setBlue(blue)
+}
+
+function doLightIndigo () {
+  if (avgColor < 128) {
+    red = Math.round(1.1 * avgColor)
+    green = 0
+    blue = Math.round(2.3 * avgColor)
+  } else {
+    red = Math.round(1.5 * avgColor - 51)
+    green = Math.round(2.3 * avgColor - 255)
     blue = 255
   }
   pixel.setRed(red)
@@ -412,6 +510,21 @@ function doOrange () {
     red = 255
     green = Math.round(1.2 * avgColor - 51)
     blue = Math.round(2 * avgColor - 255)
+  }
+  pixel.setRed(red)
+  pixel.setGreen(green)
+  pixel.setBlue(blue)
+}
+
+function doDarkOrange () {
+  if (avgColor < 128) {
+    red = Math.round(1.8 * avgColor)
+    green = Math.round(0.7 * avgColor)
+    blue = 0
+  } else {
+    red = 255
+    green = Math.round(1 * avgColor - 51)
+    blue = Math.round(1.8 * avgColor - 255)
   }
   pixel.setRed(red)
   pixel.setGreen(green)
