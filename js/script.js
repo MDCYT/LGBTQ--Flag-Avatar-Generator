@@ -124,6 +124,24 @@ function doStraight () {
   }
 } 
 
+function doNonBinary () {
+  if (checkImageLoad()) {
+    drawNonBinary()
+    outImage.drawTo(canvas)
+  } else {
+    alert('Image Not Loaded')
+  }
+}
+
+function doPeru () {
+  if (checkImageLoad()) {
+    drawPeru()
+    outImage.drawTo(canvas)
+  } else {
+    alert('Image Not Loaded')
+  }
+}
+
 // Draw Rainbow
 function drawRainbow () {
   outImage = new SimpleImage(image)
@@ -339,6 +357,51 @@ function drawStraight () {
     }
   }
 }
+
+function drawNonBinary () {
+  outImage = new SimpleImage(image)
+  const rectHeight = outImage.getHeight()
+  const rectSegment = parseInt(rectHeight) / 4
+  let Y = 0
+  let X = 0
+  for (pixel of outImage.values()) {
+    X = pixel.getX()
+    Y = pixel.getY()
+    //    outImage.setPixel(X, Y, pixel);
+    avgColor = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3
+    if (Y >= 3 * parseInt(rectSegment)) {
+      doYellow()
+    } else if (Y >= 2 * parseInt(rectSegment)) {
+      doWhite()
+    } else if (Y >= parseInt(rectSegment)) {
+      doIndigo()
+    } else {
+      doBlack()
+    }
+  }
+}
+
+function drawPeru () {
+  outImage = new SimpleImage(image)
+  const rectWidth = outImage.getWidth()
+  const rectSegment = parseInt(rectWidth) / 3
+  let Y = 0
+  let X = 0
+  for (pixel of outImage.values()) {
+    X = pixel.getX()
+    Y = pixel.getY()
+    //    outImage.setPixel(X, Y, pixel);
+    avgColor = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3
+    if (X >= 2 * parseInt(rectSegment)) {
+      doRed()
+    } else if (X >= parseInt(rectSegment)) {
+      doWhite()
+    } else {
+      doRed()
+    }
+  }
+}
+
 
 function doViolet () {
   if (avgColor < 128) {
