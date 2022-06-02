@@ -357,7 +357,6 @@ function doSkyThenBlue () {
   pixel.setBlue(blue)
 }
 
-
 function doIndigo () {
   if (avgColor < 128) {
     red = Math.round(0.8 * avgColor)
@@ -460,7 +459,7 @@ function doLightGreen () {
   if (avgColor < 128) {
     red = Math.round(0.1 * avgColor)
     green = Math.round(2.2 * avgColor)
-    blue =  Math.round(0.9 * avgColor)
+    blue = Math.round(0.9 * avgColor)
   } else {
     red = Math.round(0.1 * avgColor)
     green = Math.round(0.9 * avgColor)
@@ -475,7 +474,7 @@ function doLightinGreen () {
   if (avgColor < 128) {
     red = Math.round(1.1 * avgColor)
     green = Math.round(2.2 * avgColor)
-    blue =  Math.round(1.4 * avgColor)
+    blue = Math.round(1.4 * avgColor)
   } else {
     red = Math.round(0.8 * avgColor)
     green = Math.round(1.6 * avgColor)
