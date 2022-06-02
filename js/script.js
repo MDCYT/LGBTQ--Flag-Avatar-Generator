@@ -19,6 +19,11 @@ $('b2').style.color = '#FF000000'
 $('b2').style.backgroundColor = '#FF000000'
 $('b2').style.borderColor = '#FF000000'
 
+$('b3').style.color = '#FF000000'
+$('b3').style.backgroundColor = '#FF000000'
+$('b3').style.borderColor = '#FF000000'
+
+
 function loadImage () {
   imageIn = document.getElementById('img')
   image = new SimpleImage(imageIn)
