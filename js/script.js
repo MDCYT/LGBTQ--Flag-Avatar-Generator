@@ -52,8 +52,6 @@ $("otherimage").onclick = function () {
           .then(async (name) => {
             if (!name) throw null;
 
-            
-
             return await fetch(`https://api.github.com/users/${name}`);
           })
           .then(async (results) => {
@@ -91,7 +89,6 @@ $("otherimage").onclick = function () {
           })
           .catch((err) => {
             if (err) {
-              
               swal("Oh noes!", "The AJAX request failed!", "error");
             } else {
               swal.stopLoading();
@@ -149,7 +146,6 @@ $("otherimage").onclick = function () {
           })
           .catch((err) => {
             if (err) {
-              
               swal("Oh noes!", "The AJAX request failed!", "error");
             } else {
               swal.stopLoading();
@@ -207,7 +203,6 @@ $("otherimage").onclick = function () {
           })
           .catch((err) => {
             if (err) {
-              
               swal("Oh noes!", "The AJAX request failed!", "error");
             } else {
               swal.stopLoading();
