@@ -162,13 +162,13 @@ $("otherimage").onclick = function () {
           .then(async (name) => {
             if (!name) throw null;
 
-            return await fetch(`https://www.reddit.com/user/${name}/about.json`);
+            return await fetch(`https://unavatar.io/reddit/${name}`);
           })
           .then(async (results) => {
-            return results.json();
+            return results
           })
           .then(async (json) => {
-            const newImage = (json.data.icon_img).split("?")[0];
+            const newImage = json.url;
 
             if (!newImage) {
               return swal("User not found!");
