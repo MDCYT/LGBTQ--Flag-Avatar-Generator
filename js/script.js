@@ -79,11 +79,15 @@ $("otherimage").onclick = function () {
               });
             };
 
-            //Create new image
+            // Create new image
             image = await getBase64FromUrl(newImage);
             loadImage(image);
 
-            swal("Ready to go!", "The profile picture has been loaded!", "success");
+            swal(
+              "Ready to go!",
+              "The profile picture has been loaded!",
+              "success"
+            );
           })
           .catch((err) => {
             if (err) {
@@ -111,7 +115,7 @@ $("otherimage").onclick = function () {
             return await fetch(`https://unavatar.io/twitter/${name}`);
           })
           .then(async (results) => {
-            return results
+            return results;
           })
           .then(async (json) => {
             const newImage = json.url;
@@ -133,11 +137,15 @@ $("otherimage").onclick = function () {
               });
             };
 
-            //Create new image
+            // Create new image
             image = await getBase64FromUrl(newImage);
             loadImage(image);
 
-            swal("Ready to go!", "The profile picture has been loaded!", "success");
+            swal(
+              "Ready to go!",
+              "The profile picture has been loaded!",
+              "success"
+            );
           })
           .catch((err) => {
             if (err) {
@@ -150,7 +158,7 @@ $("otherimage").onclick = function () {
           });
         break;
 
-        case "reddit":
+      case "reddit":
         swal({
           text: "Put your Reddit username",
           content: "input",
@@ -165,7 +173,7 @@ $("otherimage").onclick = function () {
             return await fetch(`https://unavatar.io/reddit/${name}`);
           })
           .then(async (results) => {
-            return results
+            return results;
           })
           .then(async (json) => {
             const newImage = json.url;
@@ -187,11 +195,15 @@ $("otherimage").onclick = function () {
               });
             };
 
-            //Create new image
+            // Create new image
             image = await getBase64FromUrl(newImage);
             loadImage(image);
 
-            swal("Ready to go!", "The profile picture has been loaded!", "success");
+            swal(
+              "Ready to go!",
+              "The profile picture has been loaded!",
+              "success"
+            );
           })
           .catch((err) => {
             if (err) {
