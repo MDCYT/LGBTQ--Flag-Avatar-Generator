@@ -79,11 +79,15 @@ $("otherimage").onclick = function () {
               });
             };
 
-            //Create new image
+            // Create new image
             image = await getBase64FromUrl(newImage);
             loadImage(image);
 
-            swal("Ready to go!", "The profile picture has been loaded!", "success");
+            swal(
+              "Ready to go!",
+              "The profile picture has been loaded!",
+              "success"
+            );
           })
           .catch((err) => {
             if (err) {
@@ -111,7 +115,7 @@ $("otherimage").onclick = function () {
             return await fetch(`https://unavatar.io/twitter/${name}`);
           })
           .then(async (results) => {
-            return results
+            return results;
           })
           .then(async (json) => {
             const newImage = json.url;
@@ -133,11 +137,15 @@ $("otherimage").onclick = function () {
               });
             };
 
-            //Create new image
+            // Create new image
             image = await getBase64FromUrl(newImage);
             loadImage(image);
 
-            swal("Ready to go!", "The profile picture has been loaded!", "success");
+            swal(
+              "Ready to go!",
+              "The profile picture has been loaded!",
+              "success"
+            );
           })
           .catch((err) => {
             if (err) {
@@ -150,7 +158,7 @@ $("otherimage").onclick = function () {
           });
         break;
 
-        case "reddit":
+      case "reddit":
         swal({
           text: "Put your Reddit username",
           content: "input",
@@ -162,13 +170,15 @@ $("otherimage").onclick = function () {
           .then(async (name) => {
             if (!name) throw null;
 
-            return await fetch(`https://www.reddit.com/user/${name}/about.json`);
+            return await fetch(
+              `https://www.reddit.com/user/${name}/about.json`
+            );
           })
           .then(async (results) => {
             return results.json();
           })
           .then(async (json) => {
-            const newImage = (json.data.icon_img).split("?")[0];
+            const newImage = json.data.icon_img.split("?")[0];
 
             if (!newImage) {
               return swal("User not found!");
@@ -187,11 +197,15 @@ $("otherimage").onclick = function () {
               });
             };
 
-            //Create new image
+            // Create new image
             image = await getBase64FromUrl(newImage);
             loadImage(image);
 
-            swal("Ready to go!", "The profile picture has been loaded!", "success");
+            swal(
+              "Ready to go!",
+              "The profile picture has been loaded!",
+              "success"
+            );
           })
           .catch((err) => {
             if (err) {

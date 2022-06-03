@@ -1,14 +1,14 @@
-.body{
+.body {
   background-color: #f3a0a0;
 }
 
-.brand-logo{
+.brand-logo {
   -webkit-text-stroke: 1px black;
   /*Make the text little more big*/
   font-size: 2.7em !important;
 }
 
-canvas{
+canvas {
   background-color: #f3a0a0;
   border: 5px solid black;
   border-radius: 10px;
@@ -16,16 +16,15 @@ canvas{
 
   max-width: 600px;
 }
-.input{
+.input {
   padding: 25px;
 }
 
-.canvas{
+.canvas {
   padding: 10px;
 }
 
-
-.drag-and-drop{
+.drag-and-drop {
   /*drag-and-drop have 2 elements, make a column*/
   display: flex;
   flex-direction: column;
@@ -37,13 +36,13 @@ canvas{
   align-items: center;
 }
 
-.inputfile{
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;  
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
 .inputfile + label {
@@ -62,7 +61,6 @@ canvas{
   cursor: pointer; /* "hand" cursor */
 }
 
-
 .socialinput {
   font-size: 1.25em;
   font-weight: 700;
@@ -73,14 +71,13 @@ canvas{
   transition: 0.3s;
 }
 
-.socialinput:focus ,
+.socialinput:focus,
 .socialinput:hover {
   background-color: blue;
   cursor: pointer; /* "hand" cursor */
-
 }
 
-@keyframes lgbtq-background-animation{
+@keyframes lgbtq-background-animation {
   0% {
     background-position: 0 0;
   }
@@ -89,9 +86,17 @@ canvas{
   }
 }
 
-
 .lgbtq-background {
-  background: linear-gradient(to right, #E50000, #FF8D00, #FFEE00, #008121, #004CFF, #760188, #E50000);
+  background: linear-gradient(
+    to right,
+    #e50000,
+    #ff8d00,
+    #ffee00,
+    #008121,
+    #004cff,
+    #760188,
+    #e50000
+  );
   background-size: 400% 200%;
   animation: lgbtq-background-animation 20s linear infinite;
 }
