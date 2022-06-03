@@ -5,12 +5,12 @@
     <title>LGBTQ+ Avatar Flag Generator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Insert More Metadata -->
-    <title>LGBTQ+ Avatar Flag Generator</title>
     <meta name="title" content="LGBTQ+ Avatar Flag Generator" />
     <meta
       name="description"
       content="Edit your image and make it a LGBTQ+ avatar flag!"
     />
+    <meta name="theme-color" content="#FF0000">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -57,42 +57,66 @@
     src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"
     ></script>
 
+    <!-- Materialize CSS and JavaScript -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!--Scripts-->
+    <script src="js/colors.js"></script>
+    <script src="js/filters.js"></script>
+
   </head>
 
-  <h1>LGBTQ+ Avatar Flag Generator</h1>
+  <nav class="lgbtq-background" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo left">
+      LGBTQ+ Generator
+    </a>
+    </div>
+  </nav>
 
-  <canvas id="c1">
-  </canvas>
-
-  <p> </p>
-  <h2> Load Image </h2>
-  <input type="file" multiple="false" accept="image/*" id="img" onchange="loadImage()">
-  <p></p>
-  <input type="button" id="b1" value="LGBTQ+ Filter" onclick="doRainbow()">
-  <p></p>
-  <input type="button" id="b1" value="Asexual Filter" onclick="doAsexual()">
-  <p></p>
-  <input type="button" id="b1" value="Aromantic Filter" onclick="doAromantic()">
-  <p></p>
-  <input type="button" id="b1" value="Bisexual Filter" onclick="doBisexual()">
-  <p></p>
-  <input type="button" id="b1" value="Pansexual Filter" onclick="doPansexual()">
-  <p></p>
-  <input type="button" id="b1" value="Gay Filter" onclick="doGay()">
-  <p></p>
-  <input type="button" id="b1" value="Lesbian Filter" onclick="doLesbian()">
-  <p></p>
-  <input type="button" id="b1" value="Transexual Filter" onclick="doTransexual()">
-  <p></p>
-  <input type="button" id="b1" value="Non-Binary Filter" onclick="doNonBinary()">
-  <p></p>
-  <input type="button" id="b2" value="Peru Filter" onclick="doPeru()"/>
-  <p></p>
-  <input type="button" id="b3" value="Straight Filter" onclick="doStraight()"/>
-  <p></p>
-  <input type="button" value="Reset Image" onclick="doReset()">
-  <p></p>
-  <script src="js/script.js"></script>
+  <div class="body">
+    <div class="drag-and-drop">
+      <div class="canvas" style="display: none;" id="canvas">
+        <canvas id="c1">
+        </canvas>
+      </div>
+      <div class="input">
+        <input type="file" name="image" multiple="false" accept="image/*" id="img" class="inputfile" onchange="loadImage(document.getElementById('img'))">
+        <label for="img">Choose a image</label>
+        <a id="otherimage" class="socialinput"> Or pick a Social Network</a>
+      </div>
+    </div>
+  
+    <p></p>
+    <input type="button" id="b1" value="LGBTQ+ Filter" onclick="doRainbow()">
+    <p></p>
+    <input type="button" id="b1" value="Asexual Filter" onclick="doAsexual()">
+    <p></p>
+    <input type="button" id="b1" value="Aromantic Filter" onclick="doAromantic()">
+    <p></p>
+    <input type="button" id="b1" value="Bisexual Filter" onclick="doBisexual()">
+    <p></p>
+    <input type="button" id="b1" value="Pansexual Filter" onclick="doPansexual()">
+    <p></p>
+    <input type="button" id="b1" value="Gay Filter" onclick="doGay()">
+    <p></p>
+    <input type="button" id="b1" value="Lesbian Filter" onclick="doLesbian()">
+    <p></p>
+    <input type="button" id="b1" value="Transexual Filter" onclick="doTransexual()">
+    <p></p>
+    <input type="button" id="b1" value="Non-Binary Filter" onclick="doNonBinary()">
+    <p></p>
+    <input type="button" id="b2" value="Peru Filter" onclick="doPeru()"/>
+    <p></p>
+    <input type="button" id="b3" value="Straight Filter" onclick="doStraight()"/>
+    <p></p>
+    <input type="button" value="Original Image" onclick="doReset()">
+    <p></p>
+    <script src="js/script.js"></script>
+  </div>
 
 </body>
 
