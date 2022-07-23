@@ -198,28 +198,28 @@ $("#urlimage").onclick = function () {
       text: "Search!",
       closeModal: false,
     },
-  }).then(async (url) => {
-    if (!url) throw null;
-    // Create new image
-    image = await getBase64FromUrl(url);
-    loadImage(image);
+  })
+    .then(async (url) => {
+      if (!url) throw null;
+      // Create new image
+      image = await getBase64FromUrl(url);
+      loadImage(image);
 
-    swal(
-      "Ready to go!",
-      "The profile picture has been loaded!",
-      "success"
-    );
-  }
-  ).catch((err) => {
-    if (err) {
-      swal("Oh noes!", "This image is not accessible or not existent!", "error");
-    } else {
-      swal.stopLoading();
-      swal.close();
-    }
-  }
-  );
-}
+      swal("Ready to go!", "The profile picture has been loaded!", "success");
+    })
+    .catch((err) => {
+      if (err) {
+        swal(
+          "Oh noes!",
+          "This image is not accessible or not existent!",
+          "error"
+        );
+      } else {
+        swal.stopLoading();
+        swal.close();
+      }
+    });
+};
 
 function doReset() {
   outImage = new SimpleImage(image);
