@@ -10,6 +10,19 @@ let green;
 let blue;
 let avgColor;
 
+const getBase64FromUrl = async (url) => {
+  const data = await fetch(url);
+  const blob = await data.blob();
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(blob);
+    reader.onloadend = () => {
+      const base64data = reader.result;
+      resolve(base64data);
+    };
+  });
+};
+
 function loadImage(image2) {
   image = new SimpleImage(image2);
   imageorgnl = new SimpleImage(image2);
@@ -19,10 +32,10 @@ function loadImage(image2) {
 }
 
 $ = function (id) {
-  return document.getElementById(id);
+  return document.querySelector(id);
 };
 
-$("otherimage").onclick = function () {
+$("#socialimage").onclick = function () {
   swal("Select a social network", {
     buttons: {
       github: {
@@ -63,19 +76,6 @@ $("otherimage").onclick = function () {
             if (!newImage) {
               return swal("User not found!");
             }
-
-            const getBase64FromUrl = async (url) => {
-              const data = await fetch(url);
-              const blob = await data.blob();
-              return new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(blob);
-                reader.onloadend = () => {
-                  const base64data = reader.result;
-                  resolve(base64data);
-                };
-              });
-            };
 
             // Create new image
             image = await getBase64FromUrl(newImage);
@@ -121,19 +121,6 @@ $("otherimage").onclick = function () {
               return swal("User not found!");
             }
 
-            const getBase64FromUrl = async (url) => {
-              const data = await fetch(url);
-              const blob = await data.blob();
-              return new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(blob);
-                reader.onloadend = () => {
-                  const base64data = reader.result;
-                  resolve(base64data);
-                };
-              });
-            };
-
             // Create new image
             image = await getBase64FromUrl(newImage);
             loadImage(image);
@@ -178,19 +165,6 @@ $("otherimage").onclick = function () {
               return swal("User not found!");
             }
 
-            const getBase64FromUrl = async (url) => {
-              const data = await fetch(url);
-              const blob = await data.blob();
-              return new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(blob);
-                reader.onloadend = () => {
-                  const base64data = reader.result;
-                  resolve(base64data);
-                };
-              });
-            };
-
             // Create new image
             image = await getBase64FromUrl(newImage);
             loadImage(image);
@@ -216,6 +190,36 @@ $("otherimage").onclick = function () {
     }
   });
 };
+
+$("#urlimage").onclick = function () {
+  swal("Enter a URL", {
+    content: "input",
+    button: {
+      text: "Search!",
+      closeModal: false,
+    },
+  }).then(async (url) => {
+    if (!url) throw null;
+    // Create new image
+    image = await getBase64FromUrl(url);
+    loadImage(image);
+
+    swal(
+      "Ready to go!",
+      "The profile picture has been loaded!",
+      "success"
+    );
+  }
+  ).catch((err) => {
+    if (err) {
+      swal("Oh noes!", "This image is not accessible or not existent!", "error");
+    } else {
+      swal.stopLoading();
+      swal.close();
+    }
+  }
+  );
+}
 
 function doReset() {
   outImage = new SimpleImage(image);
