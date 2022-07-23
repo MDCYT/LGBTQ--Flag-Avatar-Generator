@@ -1,282 +1,282 @@
-let imageIn;
-let image = null;
-let canvas;
-let imageorgnl = null;
-const grayImage = null;
-let outImage;
-let pixel;
-let red;
-let green;
-let blue;
-let avgColor;
+let imageIn
+let image = null
+let canvas
+let imageorgnl = null
+const grayImage = null
+let outImage
+let pixel
+let red
+let green
+let blue
+let avgColor
 
 const getBase64FromUrl = async (url) => {
-  const data = await fetch(url);
-  const blob = await data.blob();
+  const data = await fetch(url)
+  const blob = await data.blob()
   return new Promise((resolve) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(blob);
+    const reader = new FileReader()
+    reader.readAsDataURL(blob)
     reader.onloadend = () => {
-      const base64data = reader.result;
-      resolve(base64data);
-    };
-  });
-};
+      const base64data = reader.result
+      resolve(base64data)
+    }
+  })
+}
 
-function loadImage(image2) {
-  image = new SimpleImage(image2);
-  imageorgnl = new SimpleImage(image2);
-  canvas = document.getElementById("c1");
-  document.getElementById("canvas").style.display = "block";
-  image.drawTo(canvas);
+function loadImage (image2) {
+  image = new SimpleImage(image2)
+  imageorgnl = new SimpleImage(image2)
+  canvas = document.getElementById('c1')
+  document.getElementById('canvas').style.display = 'block'
+  image.drawTo(canvas)
 }
 
 $ = function (id) {
-  return document.querySelector(id);
-};
+  return document.querySelector(id)
+}
 
-$("#socialimage").onclick = function () {
-  swal("Select a social network", {
+$('#socialimage').onclick = function () {
+  swal('Select a social network', {
     buttons: {
       github: {
-        text: "Github",
-        value: "github",
+        text: 'Github',
+        value: 'github'
       },
       facebook: {
-        text: "Reddit",
-        value: "reddit",
+        text: 'Reddit',
+        value: 'reddit'
       },
       twitter: {
-        text: "Twitter",
-        value: "twitter",
-      },
-    },
+        text: 'Twitter',
+        value: 'twitter'
+      }
+    }
   }).then(async (value) => {
     switch (value) {
-      case "github":
+      case 'github':
         swal({
-          text: "Put your Github username",
-          content: "input",
+          text: 'Put your Github username',
+          content: 'input',
           button: {
-            text: "Search!",
-            closeModal: false,
-          },
+            text: 'Search!',
+            closeModal: false
+          }
         })
           .then(async (name) => {
-            if (!name) throw null;
+            if (!name) throw null
 
-            return await fetch(`https://api.github.com/users/${name}`);
+            return await fetch(`https://api.github.com/users/${name}`)
           })
           .then(async (results) => {
-            return results.json();
+            return results.json()
           })
           .then(async (json) => {
-            const newImage = json.avatar_url;
+            const newImage = json.avatar_url
 
             if (!newImage) {
-              return swal("User not found!");
+              return swal('User not found!')
             }
 
             // Create new image
-            image = await getBase64FromUrl(newImage);
-            loadImage(image);
+            image = await getBase64FromUrl(newImage)
+            loadImage(image)
 
             swal(
-              "Ready to go!",
-              "The profile picture has been loaded!",
-              "success"
-            );
+              'Ready to go!',
+              'The profile picture has been loaded!',
+              'success'
+            )
           })
           .catch((err) => {
             if (err) {
-              swal("Oh noes!", "The AJAX request failed!", "error");
+              swal('Oh noes!', 'The AJAX request failed!', 'error')
             } else {
-              swal.stopLoading();
-              swal.close();
+              swal.stopLoading()
+              swal.close()
             }
-          });
-        break;
+          })
+        break
 
-      case "twitter":
+      case 'twitter':
         swal({
-          text: "Put your Twitter username",
-          content: "input",
+          text: 'Put your Twitter username',
+          content: 'input',
           button: {
-            text: "Search!",
-            closeModal: false,
-          },
+            text: 'Search!',
+            closeModal: false
+          }
         })
           .then(async (name) => {
-            if (!name) throw null;
+            if (!name) throw null
 
-            return await fetch(`https://unavatar.io/twitter/${name}`);
+            return await fetch(`https://unavatar.io/twitter/${name}`)
           })
           .then(async (results) => {
-            return results;
+            return results
           })
           .then(async (json) => {
-            const newImage = json.url;
+            const newImage = json.url
 
             if (!newImage) {
-              return swal("User not found!");
+              return swal('User not found!')
             }
 
             // Create new image
-            image = await getBase64FromUrl(newImage);
-            loadImage(image);
+            image = await getBase64FromUrl(newImage)
+            loadImage(image)
 
             swal(
-              "Ready to go!",
-              "The profile picture has been loaded!",
-              "success"
-            );
+              'Ready to go!',
+              'The profile picture has been loaded!',
+              'success'
+            )
           })
           .catch((err) => {
             if (err) {
-              swal("Oh noes!", "The AJAX request failed!", "error");
+              swal('Oh noes!', 'The AJAX request failed!', 'error')
             } else {
-              swal.stopLoading();
-              swal.close();
+              swal.stopLoading()
+              swal.close()
             }
-          });
-        break;
+          })
+        break
 
-      case "reddit":
+      case 'reddit':
         swal({
-          text: "Put your Reddit username",
-          content: "input",
+          text: 'Put your Reddit username',
+          content: 'input',
           button: {
-            text: "Search!",
-            closeModal: false,
-          },
+            text: 'Search!',
+            closeModal: false
+          }
         })
           .then(async (name) => {
-            if (!name) throw null;
+            if (!name) throw null
 
-            return await fetch(`https://unavatar.io/reddit/${name}`);
+            return await fetch(`https://unavatar.io/reddit/${name}`)
           })
           .then(async (results) => {
-            return results;
+            return results
           })
           .then(async (json) => {
-            const newImage = json.url;
+            const newImage = json.url
 
             if (!newImage) {
-              return swal("User not found!");
+              return swal('User not found!')
             }
 
             // Create new image
-            image = await getBase64FromUrl(newImage);
-            loadImage(image);
+            image = await getBase64FromUrl(newImage)
+            loadImage(image)
 
             swal(
-              "Ready to go!",
-              "The profile picture has been loaded!",
-              "success"
-            );
+              'Ready to go!',
+              'The profile picture has been loaded!',
+              'success'
+            )
           })
           .catch((err) => {
             if (err) {
-              swal("Oh noes!", "The AJAX request failed!", "error");
+              swal('Oh noes!', 'The AJAX request failed!', 'error')
             } else {
-              swal.stopLoading();
-              swal.close();
+              swal.stopLoading()
+              swal.close()
             }
-          });
-        break;
+          })
+        break
 
       default:
-        break;
+        break
     }
-  });
-};
+  })
+}
 
-$("#urlimage").onclick = function () {
-  swal("Enter a URL", {
-    content: "input",
+$('#urlimage').onclick = function () {
+  swal('Enter a URL', {
+    content: 'input',
     button: {
-      text: "Search!",
-      closeModal: false,
-    },
+      text: 'Search!',
+      closeModal: false
+    }
   })
     .then(async (url) => {
-      if (!url) throw null;
+      if (!url) throw null
       // Create new image
-      image = await getBase64FromUrl(url);
-      loadImage(image);
+      image = await getBase64FromUrl(url)
+      loadImage(image)
 
-      swal("Ready to go!", "The profile picture has been loaded!", "success");
+      swal('Ready to go!', 'The profile picture has been loaded!', 'success')
     })
     .catch((err) => {
       if (err) {
         swal(
-          "Oh noes!",
-          "This image is not accessible or not existent!",
-          "error"
-        );
+          'Oh noes!',
+          'This image is not accessible or not existent!',
+          'error'
+        )
       } else {
-        swal.stopLoading();
-        swal.close();
+        swal.stopLoading()
+        swal.close()
       }
-    });
-};
-
-function doReset() {
-  outImage = new SimpleImage(image);
-  outImage.drawTo(canvas);
+    })
 }
 
-function checkImageLoad() {
-  if (image === null) {
-    swal("Error", "Please Load an Image", "error");
+function doReset () {
+  outImage = new SimpleImage(image)
+  outImage.drawTo(canvas)
+}
 
-    return false;
+function checkImageLoad () {
+  if (image === null) {
+    swal('Error', 'Please Load an Image', 'error')
+
+    return false
   } else {
-    return true;
+    return true
   }
 }
 // Main function for Rainbow
-function doRainbow() {
-  if (checkImageLoad()) drawLGBT(image, canvas);
+function doRainbow () {
+  if (checkImageLoad()) drawLGBT(image, canvas)
 }
 
 // Main function for Rainbow
-function doAsexual() {
-  if (checkImageLoad()) drawAsexual(image, canvas);
+function doAsexual () {
+  if (checkImageLoad()) drawAsexual(image, canvas)
 }
 
-function doBisexual() {
-  if (checkImageLoad()) drawBisexual(image, canvas);
+function doBisexual () {
+  if (checkImageLoad()) drawBisexual(image, canvas)
 }
 
-function doPansexual() {
-  if (checkImageLoad()) drawPansexual(image, canvas);
+function doPansexual () {
+  if (checkImageLoad()) drawPansexual(image, canvas)
 }
 
-function doGay() {
-  if (checkImageLoad()) drawGay(image, canvas);
+function doGay () {
+  if (checkImageLoad()) drawGay(image, canvas)
 }
 
-function doLesbian() {
-  if (checkImageLoad()) drawLesbian(image, canvas);
+function doLesbian () {
+  if (checkImageLoad()) drawLesbian(image, canvas)
 }
 
-function doTransexual() {
-  if (checkImageLoad()) drawTransexual(image, canvas);
+function doTransexual () {
+  if (checkImageLoad()) drawTransexual(image, canvas)
 }
 
-function doAromantic() {
-  if (checkImageLoad()) drawAromantic(image, canvas);
+function doAromantic () {
+  if (checkImageLoad()) drawAromantic(image, canvas)
 }
 
-function doStraight() {
-  if (checkImageLoad()) drawStraight(image, canvas);
+function doStraight () {
+  if (checkImageLoad()) drawStraight(image, canvas)
 }
 
-function doNonBinary() {
-  if (checkImageLoad()) drawNonBinary(image, canvas);
+function doNonBinary () {
+  if (checkImageLoad()) drawNonBinary(image, canvas)
 }
 
-function doPeru() {
-  if (checkImageLoad()) drawPeru(image, canvas);
+function doPeru () {
+  if (checkImageLoad()) drawPeru(image, canvas)
 }
